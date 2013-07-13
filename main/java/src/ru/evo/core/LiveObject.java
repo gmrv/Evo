@@ -8,4 +8,10 @@ package ru.evo.core;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class LiveObject {
+    protected LiveObject() {
+
+    }
+
+    private int x;  // Current creature x coordinate
+    private int y;  // Current creature y coordinate
 }
