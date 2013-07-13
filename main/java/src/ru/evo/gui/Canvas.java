@@ -63,8 +63,8 @@ public class Canvas extends JFrame {
 
         Graphics2D g2=(Graphics2D) g;
         double pi2=6.28;
-        int r=5;
-        for (double a=0;a<pi2;a=a+0.1){
+        int r=100;
+        for (double a=0;a<pi2;a=a+0.01){
             int  x= (int) (350 + r*Math.cos(a));
             int y= (int) (190+r*Math.sin(a));
            g2.drawRect(x,y,1,1);
