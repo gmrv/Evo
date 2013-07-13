@@ -1,16 +1,11 @@
-package ru.evo;
+package ru.evo.core;
 
 /**
  * Created with IntelliJ IDEA.
  * User: GUMEROV_SHF
- * Date: 13.07.13
- * Time: 23:50
+ * Date: 14.07.13
+ * Time: 0:25
  * To change this template use File | Settings | File Templates.
  */
-public class Test {
-    public int return2(){
-        return 2;
-
-    }
-
+public abstract class LiveObject {
 }
