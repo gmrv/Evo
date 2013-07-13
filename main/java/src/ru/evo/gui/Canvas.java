@@ -4,6 +4,8 @@ import ru.evo.common.Voc;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
 
 /**
  * Created with IntelliJ IDEA.
@@ -37,6 +39,16 @@ public class Canvas extends JFrame {
 
         g.setColor(Color.RED);
         g.drawOval(350,100,1,1);
+
+        Graphics2D g2=(Graphics2D) g;
+        double pi2=6.28;
+        int r=5;
+        for (double a=0;a<pi2;a=a+0.1){
+            int  x= (int) (350 + r*Math.cos(a));
+            int y= (int) (190+r*Math.sin(a));
+           g2.drawRect(x,y,1,1);
+        }
+//        g2.draw(new Line2D.Double(360, 150, 380, 170));
 
     }
 
