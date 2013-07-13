@@ -23,7 +23,7 @@ public class Canvas extends JFrame {
     public void setup() {
         setTitle(Voc.MAIN_CANVAS_TITLE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 700);
+        setSize(Voc.MAIN_CANVAS_WIDTH, Voc.MAIN_CANVAS_HEIGHT);
     }
 
     @Override
@@ -35,5 +35,9 @@ public class Canvas extends JFrame {
         g.setColor(Color.GREEN);
         g.fillRect(400, 40, 300, 300);
 
+        g.setColor(Color.RED);
+        g.drawOval(350,100,1,1);
+
     }
+
 }

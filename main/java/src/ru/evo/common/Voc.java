@@ -9,4 +9,6 @@ package ru.evo.common;
  */
 public class Voc {
     public static final String MAIN_CANVAS_TITLE = "Поле битвы";
+    public static final int MAIN_CANVAS_WIDTH = 800;
+    public static final int MAIN_CANVAS_HEIGHT = 700;
 }
