@@ -2,6 +2,7 @@ package ru.evo;
 
 
 import org.junit.*;
+import org.junit.Test;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,7 +12,7 @@ import org.junit.*;
  * To change this template use File | Settings | File Templates.
  */
 public class TestTest {
-
+    @Test
     public void testReturn2() throws Exception {
 
     }
