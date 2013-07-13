@@ -8,4 +8,5 @@ package ru.evo.common;
  * To change this template use File | Settings | File Templates.
  */
 public class Voc {
+    public static final String MAIN_CANVAS_TITLE = "Поле битвы";
 }
