@@ -1,11 +1,13 @@
 package ru.evo.gui;
 
 import ru.evo.common.Voc;
+import ru.evo.core.Herbivore;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,9 +18,28 @@ import java.awt.geom.Point2D;
  */
 public class Canvas extends JFrame {
 
+    private final Herbivore jon = new Herbivore(350, 100);
+
     public Canvas() throws HeadlessException {
         setup();
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                while (true){
+                    try {
+                        TimeUnit.SECONDS.sleep(1);
+                        jon.wakeUp();
+                        repaint();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    }
+                }
+            }
+        };
         setVisible(true);
+
+        Thread t = new Thread(r);
+        t.start();
 
     }
 
@@ -37,8 +58,8 @@ public class Canvas extends JFrame {
         g.setColor(Color.GREEN);
         g.fillRect(400, 40, 300, 300);
 
-        g.setColor(Color.RED);
-        g.drawOval(350,100,1,1);
+        jon.setWord(g);
+        jon.paint(jon.getCoordX(), jon.getCoordY());
 
         Graphics2D g2=(Graphics2D) g;
         double pi2=6.28;
