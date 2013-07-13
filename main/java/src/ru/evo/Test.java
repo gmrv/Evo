@@ -8,4 +8,9 @@ package ru.evo;
  * To change this template use File | Settings | File Templates.
  */
 public class Test {
+    public int return2(){
+        return 2;
+
+    }
+
 }
