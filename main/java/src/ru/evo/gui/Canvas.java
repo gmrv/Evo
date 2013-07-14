@@ -1,12 +1,11 @@
 package ru.evo.gui;
 
 import ru.evo.common.Voc;
-import ru.evo.core.Herbivore;
+import ru.evo.core.infrastructure.MainContainer;
+import ru.evo.core.objects.Herbivore;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Line2D;
-import java.awt.geom.Point2D;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -18,17 +17,24 @@ import java.util.concurrent.TimeUnit;
  */
 public class Canvas extends JFrame {
 
-    private final Herbivore jon = new Herbivore(350, 100);
+    private MainContainer mainContainer = new MainContainer();
+
+    private final Herbivore john = new Herbivore(350, 100);
+    private final Herbivore jose = new Herbivore(350, 120);
 
     public Canvas() throws HeadlessException {
         setup();
+
+        mainContainer.add(john);
+        mainContainer.add(jose);
+
         Runnable r = new Runnable() {
             @Override
             public void run() {
                 while (true){
                     try {
                         TimeUnit.SECONDS.sleep(1);
-                        jon.wakeUp();
+                        mainContainer.sendWakeUp();
                         repaint();
                     } catch (InterruptedException e) {
                         e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
@@ -36,6 +42,7 @@ public class Canvas extends JFrame {
                 }
             }
         };
+
         setVisible(true);
 
         Thread t = new Thread(r);
@@ -51,15 +58,17 @@ public class Canvas extends JFrame {
 
     @Override
     public void paint(Graphics g) {
-        super.paint(g);    //To change body of overridden methods use File | Settings | File Templates.
+        super.paint(g);
         g.setColor(Color.BLUE);
         g.fillRect(20, 40, 300, 300);
 
         g.setColor(Color.GREEN);
         g.fillRect(400, 40, 300, 300);
 
-        jon.setWord(g);
-        jon.paint(jon.getCoordX(), jon.getCoordY());
+        john.setWord(g);
+        jose.setWord(g);
+
+        mainContainer.paint();
 
         Graphics2D g2=(Graphics2D) g;
         double pi2=6.28;
@@ -69,8 +78,6 @@ public class Canvas extends JFrame {
             int y= (int) (190+r*Math.sin(a));
            g2.drawRect(x,y,1,1);
         }
-//        g2.draw(new Line2D.Double(360, 150, 380, 170));
-
     }
 
 }

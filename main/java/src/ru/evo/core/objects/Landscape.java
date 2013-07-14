@@ -1,4 +1,4 @@
-package ru.evo.core;
+package ru.evo.core.objects;
 
 /**
  * Created with IntelliJ IDEA.

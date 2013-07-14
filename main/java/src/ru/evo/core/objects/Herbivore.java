@@ -1,4 +1,6 @@
-package ru.evo.core;
+package ru.evo.core.objects;
+
+import ru.evo.common.Voc;
 
 import java.awt.*;
 import java.util.Random;
@@ -12,26 +14,20 @@ import java.util.Random;
  */
 public class Herbivore extends LiveObject {
 
-    Random rand = new Random(47);
-
     public Herbivore(int aX, int aY) {
        super(aX, aY);
     }
 
     @Override
-    public void paint(int aX, int aY) {
+    public void paint() {
         getWord().setColor(Color.RED);
-        getWord().drawOval(aX, aY, 1, 1);
+        getWord().drawOval(getCoordX(), getCoordY(), 1, 1);
     }
 
     @Override
     public void wakeUp() {
-
-
-        int horisontal = rand.nextInt(10);
-        int vertical = rand.nextInt(10);
-
-        System.out.println(" horisontal = " + horisontal + " vertical = " + vertical);
+        int horisontal = Voc.getRand().nextInt(10);
+        int vertical = Voc.getRand().nextInt(10);
 
         setCoordNextX(horisontal%2==0 ? getCoordX()-1 : getCoordX()+1);
         setCoordNextY(vertical%2==0 ? getCoordY()-1 : getCoordY()+1 );
@@ -39,9 +35,10 @@ public class Herbivore extends LiveObject {
         move();
     }
 
-    private void move() {
-        System.out.println(" x = " + getCoordNextX() + " y = " + getCoordNextY());
-        setCoordX(getCoordNextX()); setCoordY(getCoordNextY());
-        paint(getCoordNextX(), getCoordNextY());
+    @Override
+    public void move() {
+        setCoordX(getCoordNextX());
+        setCoordY(getCoordNextY());
+        paint();
     }
 }
