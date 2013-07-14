@@ -68,7 +68,7 @@ public class Canvas extends JFrame {
         john.setWord(g);
         jose.setWord(g);
 
-        mainContainer.paint();
+        mainContainer.sendPaint();
 
         Graphics2D g2=(Graphics2D) g;
         double pi2=6.28;

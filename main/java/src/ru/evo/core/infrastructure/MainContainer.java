@@ -34,7 +34,7 @@ public class MainContainer {
         }
     }
 
-    public void paint(){
+    public void sendPaint(){
         for(BaseObject bo : mainContainer){
             bo.paint();
         }
