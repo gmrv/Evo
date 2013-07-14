@@ -4,20 +4,33 @@ package ru.evo.core.objects;
  *
  *
  */
+import ru.evo.common.Voc;
+
 import java.awt.Graphics;
 
 public abstract class BaseObject {
 
+    private String id;
     private int coordX;
     private int coordY;
     private Graphics word;
 
     protected BaseObject() {
+        setId(Voc.getNewId());
     }
 
     protected BaseObject(int aX, int aY) {
+        setId(Voc.getNewId());
         setCoordX(aX);
         setCoordY(aY);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getCoordX() {
@@ -51,4 +64,12 @@ public abstract class BaseObject {
     public abstract void wakeUp();
 
     public abstract void paint();
+
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        result.append("id: ").append(getId()).append(" ")
+                .append("{x=").append(getCoordX()).append(", ")
+                .append("y=").append(getCoordY()).append("}");
+        return result.toString();
+    }
 }

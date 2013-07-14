@@ -1,6 +1,9 @@
 package ru.evo.common;
 
+import com.sun.xml.internal.ws.util.StringUtils;
+
 import java.util.Random;
+import java.lang.String;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,7 +20,17 @@ public class Voc {
     public static final int MAIN_CANVAS_WIDTH = 800;
     public static final int MAIN_CANVAS_HEIGHT = 800;
 
+    private static int evoObjectCouner;
+
     public static Random getRand() {
         return rand;
+    }
+
+    public static String getNewId(){
+        String result =  Integer.toString(++evoObjectCouner);
+        while(result.length()<8){
+            result = "0" + result;
+        }
+        return result;
     }
 }

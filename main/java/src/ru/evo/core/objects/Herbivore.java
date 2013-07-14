@@ -37,6 +37,7 @@ public class Herbivore extends LiveObject {
 
     @Override
     public void move() {
+        System.out.println(this);
         setCoordX(getCoordNextX());
         setCoordY(getCoordNextY());
         paint();
