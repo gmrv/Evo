@@ -3,6 +3,7 @@ package ru.evo.core.infrastructure;
 import ru.evo.core.objects.BaseObject;
 import ru.evo.core.objects.Herbivore;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**

@@ -2,6 +2,7 @@ package ru.evo.common;
 
 import com.sun.xml.internal.ws.util.StringUtils;
 
+import java.awt.*;
 import java.util.Random;
 import java.lang.String;
 
@@ -19,6 +20,8 @@ public class Voc {
     public static final String MAIN_CANVAS_TITLE = "Поле битвы";
     public static final int MAIN_CANVAS_WIDTH = 800;
     public static final int MAIN_CANVAS_HEIGHT = 800;
+
+    public static Graphics g;
 
     private static int evoObjectCouner;
 

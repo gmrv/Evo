@@ -20,8 +20,8 @@ public class Herbivore extends LiveObject {
 
     @Override
     public void paint() {
-        getWord().setColor(Color.RED);
-        getWord().drawOval(getCoordX(), getCoordY(), 1, 1);
+            Voc.g.setColor(Color.RED);
+            Voc.g.drawOval(getCoordX(), getCoordY(), 1, 1);
     }
 
     @Override
@@ -37,9 +37,10 @@ public class Herbivore extends LiveObject {
 
     @Override
     public void move() {
-        System.out.println(this);
-        setCoordX(getCoordNextX());
-        setCoordY(getCoordNextY());
-        paint();
+        //System.out.println(this);
+            setCoordX(getCoordNextX());
+            setCoordY(getCoordNextY());
+            paint();
+
     }
 }

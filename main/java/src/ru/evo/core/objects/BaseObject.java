@@ -67,9 +67,10 @@ public abstract class BaseObject {
 
     public String toString(){
         StringBuilder result = new StringBuilder();
-        result.append("id: ").append(getId()).append(" ")
-                .append("{x=").append(getCoordX()).append(", ")
-                .append("y=").append(getCoordY()).append("}");
+        result
+            .append("id: ").append(getId()).append(" ")
+            .append("{x=").append(getCoordX()).append(", ")
+            .append("y=").append(getCoordY()).append("}");
         return result.toString();
     }
 }

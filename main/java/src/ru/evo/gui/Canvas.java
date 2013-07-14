@@ -20,13 +20,23 @@ public class Canvas extends JFrame {
     private MainContainer mainContainer = new MainContainer();
 
     private final Herbivore john = new Herbivore(350, 100);
-    private final Herbivore jose = new Herbivore(350, 120);
+
 
     public Canvas() throws HeadlessException {
         setup();
 
         mainContainer.add(john);
-        mainContainer.add(jose);
+
+        for(int i = 0; i<5000; i++){
+            mainContainer.add(
+                    new Herbivore(
+                            Voc.getRand().nextInt(800),
+                            Voc.getRand().nextInt(800)
+                    )
+
+            );
+        }
+
 
         Runnable r = new Runnable() {
             @Override
@@ -58,26 +68,16 @@ public class Canvas extends JFrame {
 
     @Override
     public void paint(Graphics g) {
+
         super.paint(g);
-        g.setColor(Color.BLUE);
-        g.fillRect(20, 40, 300, 300);
+
+        Voc.g = g;
 
         g.setColor(Color.GREEN);
-        g.fillRect(400, 40, 300, 300);
-
-        john.setWord(g);
-        jose.setWord(g);
+        g.drawLine(0,0,100,100);
 
         mainContainer.sendPaint();
 
-        Graphics2D g2=(Graphics2D) g;
-        double pi2=6.28;
-        int r=100;
-        for (double a=0;a<pi2;a=a+0.01){
-            int  x= (int) (350 + r*Math.cos(a));
-            int y= (int) (190+r*Math.sin(a));
-           g2.drawRect(x,y,1,1);
-        }
     }
 
 }
