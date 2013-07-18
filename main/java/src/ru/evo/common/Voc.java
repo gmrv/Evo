@@ -1,6 +1,7 @@
 package ru.evo.common;
 
 import com.sun.xml.internal.ws.util.StringUtils;
+import ru.evo.core.infrastructure.MainContainer;
 
 import java.awt.*;
 import java.util.Random;
@@ -22,6 +23,8 @@ public class Voc {
     public static final int MAIN_CANVAS_HEIGHT = 800;
 
     public static Graphics g;
+
+    public static MainContainer mainContainer = new MainContainer();
 
     private static int evoObjectCouner;
 

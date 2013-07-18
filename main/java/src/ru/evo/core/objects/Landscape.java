@@ -7,5 +7,5 @@ package ru.evo.core.objects;
  * Time: 0:26
  * To change this template use File | Settings | File Templates.
  */
-public abstract class Landscape {
+public abstract class Landscape extends BaseObject {
 }

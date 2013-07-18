@@ -2,6 +2,7 @@ package ru.evo.gui;
 
 import ru.evo.common.Voc;
 import ru.evo.core.infrastructure.MainContainer;
+import ru.evo.core.objects.Grass;
 import ru.evo.core.objects.Herbivore;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class Canvas extends JFrame {
 
-    private MainContainer mainContainer = new MainContainer();
+
 
     private final Herbivore john = new Herbivore(350, 100);
 
@@ -25,9 +26,9 @@ public class Canvas extends JFrame {
     public Canvas() throws HeadlessException {
         setup();
 
-        mainContainer.add(john);
+        Voc.mainContainer.add(john);
 
-        for(int i = 0; i<500; i++){
+        for(int i = 0; i<100; i++){
 
             Herbivore hbvr = new Herbivore(
                     Voc.getRand().nextInt(800),
@@ -37,7 +38,14 @@ public class Canvas extends JFrame {
             hbvr.setCoordGoalX(100);
             hbvr.setCoordGoalY(100);
 
-            mainContainer.add(hbvr);
+            Voc.mainContainer.add(hbvr);
+        }
+
+        for(int i = 0; i<200; i++){
+            Voc.mainContainer.add(new Grass(
+                    Voc.getRand().nextInt(800),
+                    Voc.getRand().nextInt(800)
+            ));
         }
 
 
@@ -47,7 +55,7 @@ public class Canvas extends JFrame {
                 while (true){
                     try {
                         TimeUnit.MILLISECONDS.sleep(50);
-                        mainContainer.sendWakeUp();
+                        Voc.mainContainer.sendWakeUp();
                         repaint();
                     } catch (InterruptedException e) {
                         e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
@@ -79,7 +87,7 @@ public class Canvas extends JFrame {
         g.setColor(Color.BLACK);
         g.drawOval(99,99,3,3);
 
-        mainContainer.sendPaint();
+        Voc.mainContainer.sendPaint();
 
     }
 

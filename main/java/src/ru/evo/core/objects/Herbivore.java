@@ -30,6 +30,7 @@ public class Herbivore extends LiveObject {
             setNextSteepCoordForGoal();
             move();
         }else{
+            //New goal
             setCoordGoalX(Voc.getRand().nextInt(800));
             setCoordGoalY(Voc.getRand().nextInt(800));
         }

@@ -22,6 +22,10 @@ public class MainContainer {
         mainContainer.add(aEvoObject);
     }
 
+    public void remove(BaseObject aEvoObject){
+        mainContainer.remove(aEvoObject);
+    }
+
     public BaseObject get(int aIndex){
         return mainContainer.get(aIndex);
     }
