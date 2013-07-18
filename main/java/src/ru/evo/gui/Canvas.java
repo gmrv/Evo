@@ -27,14 +27,17 @@ public class Canvas extends JFrame {
 
         mainContainer.add(john);
 
-        for(int i = 0; i<5000; i++){
-            mainContainer.add(
-                    new Herbivore(
-                            Voc.getRand().nextInt(800),
-                            Voc.getRand().nextInt(800)
-                    )
+        for(int i = 0; i<100; i++){
 
+            Herbivore hbvr = new Herbivore(
+                    Voc.getRand().nextInt(800),
+                    Voc.getRand().nextInt(800)
             );
+
+            hbvr.setCoordGoalX(100);
+            hbvr.setCoordGoalY(100);
+
+            mainContainer.add(hbvr);
         }
 
 
@@ -43,7 +46,7 @@ public class Canvas extends JFrame {
             public void run() {
                 while (true){
                     try {
-                        TimeUnit.SECONDS.sleep(1);
+                        TimeUnit.MILLISECONDS.sleep(100);
                         mainContainer.sendWakeUp();
                         repaint();
                     } catch (InterruptedException e) {

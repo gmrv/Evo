@@ -12,6 +12,11 @@ public abstract class LiveObject extends BaseObject {
     private int coordNextX;  // Next creature x coordinate
     private int coordNextY;  // Next creature y coordinate
 
+    private int coordGoalX;
+    private int coordGoalY;
+
+    private boolean hasTheGoal;
+
     protected LiveObject() {
     }
 
@@ -33,6 +38,32 @@ public abstract class LiveObject extends BaseObject {
 
     public void setCoordNextY(int coordNextY) {
         this.coordNextY = coordNextY;
+    }
+
+    public int getCoordGoalX() {
+        return coordGoalX;
+    }
+
+    public void setCoordGoalX(int coordGoalX) {
+        this.coordGoalX = coordGoalX;
+        this.setHasTheGoal(true);
+    }
+
+    public int getCoordGoalY() {
+        return coordGoalY;
+    }
+
+    public void setCoordGoalY(int coordGoalY) {
+        this.coordGoalY = coordGoalY;
+        this.setHasTheGoal(true);
+    }
+
+    public boolean isHasTheGoal() {
+        return hasTheGoal;
+    }
+
+    public void setHasTheGoal(boolean hasTheGoal) {
+        this.hasTheGoal = hasTheGoal;
     }
 
     public abstract void move();
