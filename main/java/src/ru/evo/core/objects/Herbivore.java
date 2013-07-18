@@ -25,26 +25,29 @@ public class Herbivore extends LiveObject {
     }
 
     @Override
+    public void behavior() {
+        if(isHasTheGoal()){
+            setNextSteepCoordForGoal();
+            move();
+        }else{
+            setCoordGoalX(Voc.getRand().nextInt(800));
+            setCoordGoalY(Voc.getRand().nextInt(800));
+        }
+    }
+
+    @Override
     public void wakeUp() {
-        //int horisontal = Voc.getRand().nextInt(10);
-        //int vertical = Voc.getRand().nextInt(10);
-
-        //setCoordNextX(horisontal%2==0 ? getCoordX()-1 : getCoordX()+1);
-        //setCoordNextY(vertical%2==0 ? getCoordY()-1 : getCoordY()+1 );
-
-        move();
+        behavior();
+        paint();
     }
 
     @Override
     public void move() {
-        if (isHasTheGoal()) getNextSteepCoordForGoal();
         setCoordX(getCoordNextX());
         setCoordY(getCoordNextY());
-        paint();
-
     }
 
-    void getNextSteepCoordForGoal() {
+    void setNextSteepCoordForGoal() {
         int i, L, xstart, ystart, xend, yend;
         float dX, dY;
         xstart = getCoordX();
@@ -55,8 +58,7 @@ public class Herbivore extends LiveObject {
         L = Math.max(Math.abs(xend - xstart), Math.abs(yend - ystart));
 
         if(L==0){
-            setCoordGoalX(Voc.getRand().nextInt(800));
-            setCoordGoalY(Voc.getRand().nextInt(800));
+            setHasTheGoal(false);
             dX = 0;
             dY = 0;
         }else{
@@ -66,7 +68,5 @@ public class Herbivore extends LiveObject {
 
         setCoordNextX(Math.round(getCoordX() + dX));
         setCoordNextY(Math.round(getCoordY() + dY));
-
-
     }
 }

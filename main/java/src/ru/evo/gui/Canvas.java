@@ -27,7 +27,7 @@ public class Canvas extends JFrame {
 
         mainContainer.add(john);
 
-        for(int i = 0; i<100; i++){
+        for(int i = 0; i<500; i++){
 
             Herbivore hbvr = new Herbivore(
                     Voc.getRand().nextInt(800),
@@ -76,8 +76,8 @@ public class Canvas extends JFrame {
 
         Voc.g = g;
 
-        g.setColor(Color.GREEN);
-        g.drawLine(0,0,100,100);
+        g.setColor(Color.BLACK);
+        g.drawOval(99,99,3,3);
 
         mainContainer.sendPaint();
 

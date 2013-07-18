@@ -63,7 +63,15 @@ public abstract class BaseObject {
      */
     public abstract void wakeUp();
 
+    /**
+     * Отрисовка самого себя на канвас
+     */
     public abstract void paint();
+
+    /**
+     * Реализует поведение объекта
+     */
+    public abstract void behavior();
 
     public String toString(){
         StringBuilder result = new StringBuilder();
