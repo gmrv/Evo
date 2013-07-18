@@ -36,13 +36,7 @@ public class MainContainer {
      */
     public void sendWakeUp(){
         for(BaseObject bo : mainContainer){
-            if(bo.isDie()){
-                //Выкидывает java.util.ConcurrentModificationException
-                //mainContainer.remove(bo);
-            }else{
                 bo.wakeUp();
-            }
-
         }
     }
 
@@ -52,4 +46,11 @@ public class MainContainer {
         }
     }
 
+    public void dropDieObject() {
+        for(BaseObject bo : mainContainer){
+            if(bo.isDie()){
+                mainContainer.remove(bo);
+            }
+        }
+    }
 }

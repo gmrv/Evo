@@ -55,9 +55,13 @@ public class Canvas extends JFrame {
             public void run() {
                 while (true){
                     try {
+                        //Сербан, помогай
+                        //Выкидывает java.util.ConcurrentModificationException
+                        //Voc.mainContainer.dropDieObject();
                         TimeUnit.MILLISECONDS.sleep(50);
                         Voc.mainContainer.sendWakeUp();
                         repaint();
+
                     } catch (InterruptedException e) {
                         e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                     }
