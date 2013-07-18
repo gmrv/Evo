@@ -87,7 +87,8 @@ public abstract class BaseObject {
         result
             .append("id: ").append(getId()).append(" ")
             .append("{x=").append(getCoordX()).append(", ")
-            .append("y=").append(getCoordY()).append("}");
+            .append("y=").append(getCoordY()).append("} ")
+            .append(this.getClass().getSimpleName());
         return result.toString();
     }
 }

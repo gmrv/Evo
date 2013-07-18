@@ -20,6 +20,7 @@ public class MainContainer {
 
     public void add(BaseObject aEvoObject){
         mainContainer.add(aEvoObject);
+        System.out.println(aEvoObject + " added");
     }
 
     public void remove(BaseObject aEvoObject){

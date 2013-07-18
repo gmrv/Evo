@@ -33,7 +33,7 @@ public class Voc {
     }
 
     public static String getNewId(){
-        String result =  Integer.toString(++evoObjectCouner);
+        String result =  Integer.toString(evoObjectCouner++);
         while(result.length()<8){
             result = "0" + result;
         }
