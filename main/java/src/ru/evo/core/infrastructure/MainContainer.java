@@ -1,5 +1,6 @@
 package ru.evo.core.infrastructure;
 
+import ru.evo.common.Voc;
 import ru.evo.core.objects.BaseObject;
 import ru.evo.core.objects.Herbivore;
 
@@ -20,7 +21,7 @@ public class MainContainer {
 
     public void add(BaseObject aEvoObject){
         mainContainer.add(aEvoObject);
-        System.out.println(aEvoObject + " added");
+        Voc.writeLog(aEvoObject + " added");
     }
 
     public void remove(BaseObject aEvoObject){

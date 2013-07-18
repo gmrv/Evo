@@ -42,4 +42,9 @@ public class Voc {
         }
         return result;
     }
+
+    public static void writeLog(String message){
+        System.out.println(message);
+    }
+
 }

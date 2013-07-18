@@ -59,7 +59,7 @@ public class Herbivore extends LiveObject {
                 findSex();
                 break;
             default:
-                System.out.println("Invalid Goal Type:" + goalType); //throw new InvalidGoalTypeException(Integer.toString(goalType));
+                Voc.writeLog("Invalid Goal Type:" + goalType); //throw new InvalidGoalTypeException(Integer.toString(goalType));
         }
     }
 
