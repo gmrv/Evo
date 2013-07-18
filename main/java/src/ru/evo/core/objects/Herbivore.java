@@ -129,6 +129,7 @@ public class Herbivore extends LiveObject {
             }
         }
 
+        //todo: Поиск ближайшего объекта
         for(BaseObject bo : findedObjects){
 
         }
