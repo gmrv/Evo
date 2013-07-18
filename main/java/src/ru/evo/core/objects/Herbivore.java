@@ -133,7 +133,8 @@ public class Herbivore extends LiveObject {
 
         }
 
-        if(findedObjects.size()>0){
+        // Если в найденых объектах меньше двух, отправляем в случайную точку
+        if(findedObjects.size()>1){
             int index = Voc.getRand().nextInt(findedObjects.size());
             setCoordGoalX(findedObjects.get(index).getCoordX());
             setCoordGoalY(findedObjects.get(index).getCoordY());
