@@ -17,9 +17,13 @@ public class Grass extends Landscape {
     //private static final Color faded = new Color(0, 127, 14);
     //private static final Color dry = new Color(255, 216, 0);
 
-    private static final Color fresh = new Color(0, 0, 0);
-    private static final Color faded = new Color(127, 127, 127);
-    private static final Color dry = new Color(255, 255, 255);
+    //private static final Color fresh = new Color(0, 0, 0);
+    //private static final Color faded = new Color(127, 127, 127);
+    //private static final Color dry = new Color(255, 255, 255);
+
+    private static final Color fresh = new Color(9, 127, 6);
+    private static final Color faded = new Color(0, 0, 255);
+    private static final Color dry = new Color(0, 0, 0);
 
     private float freshness = (float) 100.0;
     private Color color = fresh;
@@ -52,7 +56,7 @@ public class Grass extends Landscape {
 
     @Override
     public void behavior() {
-        setFreshness((float) (getFreshness()-0.5));
+        setFreshness((float) (getFreshness()-0.1));
     }
 
     public float getFreshness() {

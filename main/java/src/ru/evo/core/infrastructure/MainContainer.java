@@ -6,13 +6,14 @@ import ru.evo.core.objects.Herbivore;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Основной класс контейнер.
  * Обеспечивает хранение и доступ ко всем объектом из основного таймера.
  * todo: Нужно переделать в синглтон
  */
-public class MainContainer {
+public class MainContainer implements Iterable<BaseObject> {
 
     private ArrayList<BaseObject> mainContainer = new ArrayList<BaseObject>();
 
@@ -21,7 +22,7 @@ public class MainContainer {
 
     public void add(BaseObject aEvoObject){
         mainContainer.add(aEvoObject);
-        Voc.writeLog(aEvoObject + " added");
+        //Voc.writeLog(aEvoObject + " added");
     }
 
     public void remove(BaseObject aEvoObject){
@@ -53,5 +54,24 @@ public class MainContainer {
                 mainContainer.remove(bo);
             }
         }
+    }
+
+    @Override
+    public Iterator iterator() {
+        return new Iterator<BaseObject>() {
+            private int index = 0;
+
+            public boolean hasNext() {
+                return index < mainContainer.size();
+            }
+
+            public BaseObject next() {
+                return mainContainer.get(index++);
+            }
+
+            public void remove() {
+                mainContainer.remove(index);
+            }
+        };
     }
 }

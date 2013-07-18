@@ -65,9 +65,9 @@ public abstract class BaseObject {
     public void setDie(boolean die) {
         if(die!=isDie){
             if(die){
-                Voc.writeLog(this.toString() + " was died. :(");
+                //Voc.writeLog(this.toString() + " was died. :(");
             }else{
-                Voc.writeLog(this.toString() + " was borned! :)");
+                //Voc.writeLog(this.toString() + " was borned! :)");
             }
             isDie = die;
         }

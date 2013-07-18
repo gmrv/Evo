@@ -60,7 +60,7 @@ public abstract class LiveObject extends BaseObject {
         this.setHasTheGoal(true);
     }
 
-    public boolean isHasTheGoal() {
+    public boolean hasTheGoal() {
         return hasTheGoal;
     }
 

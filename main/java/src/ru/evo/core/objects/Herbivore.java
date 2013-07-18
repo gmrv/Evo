@@ -1,9 +1,9 @@
 package ru.evo.core.objects;
 
 import ru.evo.common.Voc;
-import ru.evo.core.Exceptions.InvalidGoalTypeException;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,8 +26,8 @@ public class Herbivore extends LiveObject {
 
     @Override
     public void behavior() {
-        if(isHasTheGoal()){
-            setNextSteepCoordForGoal();
+        if(hasTheGoal()){
+            setNextSteepCoordTowardsGoal();
             move();
         }else{
             findGoal(Voc.GOAL_TYPE_FOOD);
@@ -63,7 +63,7 @@ public class Herbivore extends LiveObject {
         }
     }
 
-    void setNextSteepCoordForGoal() {
+    void setNextSteepCoordTowardsGoal() {
         int i, L, xstart, ystart, xend, yend;
         float dX, dY;
         xstart = getCoordX();
@@ -92,8 +92,57 @@ public class Herbivore extends LiveObject {
     }
 
     private void findFood(){
-        setCoordGoalX(Voc.getRand().nextInt(800));
-        setCoordGoalY(Voc.getRand().nextInt(800));
+
+        //Voc.writeLog( this + " search started");
+
+        int findRadius = 50;
+
+        int x1 = getCoordX() - findRadius;
+        int y1 = getCoordY() - findRadius;
+        int x2 = getCoordX() + findRadius;
+        int y2 = getCoordY() + findRadius;
+
+        //Voc.writeLog("{xa = " + getCoordX() + ", ya = " + getCoordY() + "}");
+        //Voc.writeLog("{x1 = " + x1 + ", y1 = " + y1 + "}, " + "{x2 = " + x2 + ", y2 = " + y2 + "}");
+
+        ArrayList<BaseObject> findedObjects = new ArrayList<BaseObject>();
+
+        for(BaseObject bo : Voc.mainContainer){
+            if(bo.getClass().getSimpleName().equals("Grass")){
+                int x = bo.getCoordX();
+                int y = bo.getCoordY();
+                //Voc.writeLog("{x = " + x + ", y = " + y + "}");
+                if( x > x1 ){
+                    //Voc.writeLog("x > x1");
+                    if(x < x2){
+                        //Voc.writeLog("x < x2");
+                        if(y > y1){
+                            //Voc.writeLog("y < y1");
+                            if(y < y2){
+                                //Voc.writeLog("y < y2");
+                                findedObjects.add(bo);
+                                //Voc.writeLog("ok. added. size = " + findedObjects.size());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        for(BaseObject bo : findedObjects){
+
+        }
+
+        if(findedObjects.size()>0){
+            int index = Voc.getRand().nextInt(findedObjects.size());
+            setCoordGoalX(findedObjects.get(index).getCoordX());
+            setCoordGoalY(findedObjects.get(index).getCoordY());
+        }else{
+            setCoordGoalX(Voc.getRand().nextInt(800));
+            setCoordGoalY(Voc.getRand().nextInt(800));
+        }
+
+
     }
 
     private void findSex(){

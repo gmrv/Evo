@@ -28,15 +28,15 @@ public class Canvas extends JFrame {
 
         Voc.mainContainer.add(john);
 
-        for(int i = 0; i<50; i++){
+        for(int i = 0; i<100; i++){
 
             Herbivore hbvr = new Herbivore(
                     Voc.getRand().nextInt(800),
                     Voc.getRand().nextInt(800)
             );
 
-            hbvr.setCoordGoalX(100);
-            hbvr.setCoordGoalY(100);
+            hbvr.setCoordGoalX(Voc.getRand().nextInt(800));
+            hbvr.setCoordGoalY(Voc.getRand().nextInt(800));
 
             Voc.mainContainer.add(hbvr);
         }
