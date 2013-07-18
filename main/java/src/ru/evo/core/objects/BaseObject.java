@@ -14,6 +14,7 @@ public abstract class BaseObject {
     private int coordX;
     private int coordY;
     private Graphics word;
+    private boolean isDie;
 
     protected BaseObject() {
         setId(Voc.getNewId());
@@ -55,6 +56,14 @@ public abstract class BaseObject {
 
     public Graphics getWord() {
         return word;
+    }
+
+    public boolean isDie() {
+        return isDie;
+    }
+
+    public void setDie(boolean die) {
+        isDie = die;
     }
 
     /**

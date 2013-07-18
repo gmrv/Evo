@@ -15,7 +15,7 @@ public class Grass extends Landscape {
 
     private static final Color fresh = new Color(0, 255, 3);
     private static final Color faded = new Color(0, 127, 14);
-    private static final Color dry = new Color(255,216, 0);
+    private static final Color dry = new Color(255, 216, 0);
 
     private float freshness = (float) 100.0;
     private Color color = fresh;
@@ -36,23 +36,19 @@ public class Grass extends Landscape {
 
     @Override
     public void paint() {
-        if(freshness>0){
-            Voc.g.setColor(color);
-            Voc.g.drawOval(getCoordX(), getCoordY(), 3, 3);
-        }else{
-
-        }
+        Voc.g.setColor(color);
+        Voc.g.drawOval(getCoordX(), getCoordY(), 3, 3);
     }
 
     @Override
     public void behavior() {
         freshness = (float) (freshness - 0.5);
-        if(freshness<75 && freshness>30){
+        if (freshness < 75 && freshness > 30) {
             color = faded;
-        }else if(freshness<30 && freshness>0){
+        } else if (freshness < 30 && freshness > 0) {
             color = dry;
-        }else if(freshness<0){
-            //Voc.mainContainer.remove(this);
+        } else if (freshness < 0) {
+            setDie(true);
         }
     }
 
