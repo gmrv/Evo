@@ -44,7 +44,8 @@ public class Canvas extends JFrame {
         for(int i = 0; i<200; i++){
             Voc.mainContainer.add(new Grass(
                     Voc.getRand().nextInt(800),
-                    Voc.getRand().nextInt(800)
+                    Voc.getRand().nextInt(800),
+                    100 - (Voc.getRand().nextFloat() * 100)
             ));
         }
 

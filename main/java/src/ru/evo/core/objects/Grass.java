@@ -13,9 +13,13 @@ import java.awt.*;
  */
 public class Grass extends Landscape {
 
-    private static final Color fresh = new Color(0, 255, 3);
-    private static final Color faded = new Color(0, 127, 14);
-    private static final Color dry = new Color(255, 216, 0);
+    //private static final Color fresh = new Color(0, 255, 3);
+    //private static final Color faded = new Color(0, 127, 14);
+    //private static final Color dry = new Color(255, 216, 0);
+
+    private static final Color fresh = new Color(0, 0, 0);
+    private static final Color faded = new Color(127, 127, 127);
+    private static final Color dry = new Color(255, 255, 255);
 
     private float freshness = (float) 100.0;
     private Color color = fresh;
@@ -26,6 +30,12 @@ public class Grass extends Landscape {
     public Grass(int aX, int aY) {
         setCoordX(aX);
         setCoordY(aY);
+    }
+
+    public Grass(int aX, int aY, float aFreshness) {
+        setCoordX(aX);
+        setCoordY(aY);
+        setFreshness(aFreshness);
     }
 
     @Override
@@ -42,7 +52,15 @@ public class Grass extends Landscape {
 
     @Override
     public void behavior() {
-        freshness = (float) (freshness - 0.5);
+        setFreshness((float) (getFreshness()-0.5));
+    }
+
+    public float getFreshness() {
+        return freshness;
+    }
+
+    public void setFreshness(float aFreshness) {
+        this.freshness = aFreshness;
         if (freshness < 75 && freshness > 30) {
             color = faded;
         } else if (freshness < 30 && freshness > 0) {
@@ -50,13 +68,5 @@ public class Grass extends Landscape {
         } else if (freshness < 0) {
             setDie(true);
         }
-    }
-
-    public float getFreshness() {
-        return freshness;
-    }
-
-    public void setFreshness(float freshness) {
-        this.freshness = freshness;
     }
 }
