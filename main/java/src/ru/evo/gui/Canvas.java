@@ -46,7 +46,7 @@ public class Canvas extends JFrame {
             public void run() {
                 while (true){
                     try {
-                        TimeUnit.MILLISECONDS.sleep(100);
+                        TimeUnit.MILLISECONDS.sleep(50);
                         mainContainer.sendWakeUp();
                         repaint();
                     } catch (InterruptedException e) {

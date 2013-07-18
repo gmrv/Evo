@@ -37,10 +37,7 @@ public class Herbivore extends LiveObject {
 
     @Override
     public void move() {
-        //System.out.println(this);
-
         if (isHasTheGoal()) getNextSteepCoordForGoal();
-
         setCoordX(getCoordNextX());
         setCoordY(getCoordNextY());
         paint();
@@ -58,7 +55,8 @@ public class Herbivore extends LiveObject {
         L = Math.max(Math.abs(xend - xstart), Math.abs(yend - ystart));
 
         if(L==0){
-            setHasTheGoal(false);
+            setCoordGoalX(Voc.getRand().nextInt(800));
+            setCoordGoalY(Voc.getRand().nextInt(800));
             dX = 0;
             dY = 0;
         }else{
