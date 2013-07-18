@@ -1,5 +1,7 @@
 package ru.evo.core.objects;
 
+import ru.evo.core.Exceptions.InvalidGoalTypeException;
+
 /**
  * Created with IntelliJ IDEA.
  * User: GUMEROV_SHF
@@ -67,4 +69,6 @@ public abstract class LiveObject extends BaseObject {
     }
 
     public abstract void move();
+
+    public abstract void findGoal(int goalType) throws InvalidGoalTypeException;
 }

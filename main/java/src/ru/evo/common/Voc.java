@@ -21,6 +21,9 @@ public class Voc {
     public static final String MAIN_CANVAS_TITLE = "Поле битвы";
     public static final int MAIN_CANVAS_WIDTH = 800;
     public static final int MAIN_CANVAS_HEIGHT = 800;
+    public static final int GOAL_TYPE_WATER = 0;
+    public static final int GOAL_TYPE_FOOD = 1;
+    public static final int GOAL_TYPE_SEX = 3;
 
     public static Graphics g;
 

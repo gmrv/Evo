@@ -28,7 +28,7 @@ public class Canvas extends JFrame {
 
         Voc.mainContainer.add(john);
 
-        for(int i = 0; i<100; i++){
+        for(int i = 0; i<50; i++){
 
             Herbivore hbvr = new Herbivore(
                     Voc.getRand().nextInt(800),
@@ -41,7 +41,7 @@ public class Canvas extends JFrame {
             Voc.mainContainer.add(hbvr);
         }
 
-        for(int i = 0; i<200; i++){
+        for(int i = 0; i<100; i++){
             Voc.mainContainer.add(new Grass(
                     Voc.getRand().nextInt(800),
                     Voc.getRand().nextInt(800),

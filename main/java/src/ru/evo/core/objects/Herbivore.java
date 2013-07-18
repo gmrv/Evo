@@ -1,9 +1,9 @@
 package ru.evo.core.objects;
 
 import ru.evo.common.Voc;
+import ru.evo.core.Exceptions.InvalidGoalTypeException;
 
 import java.awt.*;
-import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -30,9 +30,7 @@ public class Herbivore extends LiveObject {
             setNextSteepCoordForGoal();
             move();
         }else{
-            //New goal
-            setCoordGoalX(Voc.getRand().nextInt(800));
-            setCoordGoalY(Voc.getRand().nextInt(800));
+            findGoal(Voc.GOAL_TYPE_FOOD);
         }
     }
 
@@ -46,6 +44,23 @@ public class Herbivore extends LiveObject {
     public void move() {
         setCoordX(getCoordNextX());
         setCoordY(getCoordNextY());
+    }
+
+    @Override
+    public void findGoal(int goalType){
+        switch (goalType) {
+            case 0:
+                findWater();
+                break;
+            case 1:
+                findFood();
+                break;
+            case 2:
+                findSex();
+                break;
+            default:
+                System.out.println("Invalid Goal Type:" + goalType); //throw new InvalidGoalTypeException(Integer.toString(goalType));
+        }
     }
 
     void setNextSteepCoordForGoal() {
@@ -70,4 +85,20 @@ public class Herbivore extends LiveObject {
         setCoordNextX(Math.round(getCoordX() + dX));
         setCoordNextY(Math.round(getCoordY() + dY));
     }
+
+    private void findWater(){
+        setCoordGoalX(Voc.getRand().nextInt(800));
+        setCoordGoalY(Voc.getRand().nextInt(800));
+    }
+
+    private void findFood(){
+        setCoordGoalX(Voc.getRand().nextInt(800));
+        setCoordGoalY(Voc.getRand().nextInt(800));
+    }
+
+    private void findSex(){
+        setCoordGoalX(Voc.getRand().nextInt(800));
+        setCoordGoalY(Voc.getRand().nextInt(800));
+    }
 }
+
