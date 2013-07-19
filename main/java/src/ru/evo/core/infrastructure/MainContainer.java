@@ -16,12 +16,13 @@ import java.util.Iterator;
 public class MainContainer implements Iterable<BaseObject> {
 
     private ArrayList<BaseObject> mainContainer = new ArrayList<BaseObject>();
+    private ArrayList<BaseObject> toDelete = new ArrayList<BaseObject>();
 
     public MainContainer() {
     }
 
     public void add(BaseObject aEvoObject){
-        mainContainer.add(aEvoObject);
+        getMainContainer().add(aEvoObject);
         //Voc.writeLog(aEvoObject + " added");
     }
 
@@ -37,23 +38,27 @@ public class MainContainer implements Iterable<BaseObject> {
      * Метод для посылки сообщения всем объектам в контейнере
      */
     public void sendWakeUp(){
-        for(BaseObject bo : mainContainer){
+        for(BaseObject bo : getMainContainer()){
                 bo.wakeUp();
         }
     }
 
     public void sendPaint(){
-        for(BaseObject bo : mainContainer){
+        for(BaseObject bo : getMainContainer()){
             bo.paint();
         }
     }
 
     public void dropDieObject() {
-        for(BaseObject bo : mainContainer){
+        for(BaseObject bo : getMainContainer()){
             if(bo.isDie()){
-                mainContainer.remove(bo);
+//                getMainContainer().remove(bo);
+                toDelete.add(bo);
             }
         }
+
+        getMainContainer().removeAll(toDelete);
+
     }
 
     @Override
@@ -62,16 +67,24 @@ public class MainContainer implements Iterable<BaseObject> {
             private int index = 0;
 
             public boolean hasNext() {
-                return index < mainContainer.size();
+                return index < getMainContainer().size();
             }
 
             public BaseObject next() {
-                return mainContainer.get(index++);
+                return getMainContainer().get(index++);
             }
 
             public void remove() {
-                mainContainer.remove(index);
+                getMainContainer().remove(index);
             }
         };
+    }
+
+    public synchronized ArrayList<BaseObject> getMainContainer() {
+        return mainContainer;
+    }
+
+    public void setMainContainer(ArrayList<BaseObject> mainContainer) {
+        this.mainContainer = mainContainer;
     }
 }

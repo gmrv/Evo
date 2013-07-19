@@ -23,11 +23,11 @@ public class Voc {
     public static final int MAIN_CANVAS_HEIGHT = 800;
     public static final int GOAL_TYPE_WATER = 0;
     public static final int GOAL_TYPE_FOOD = 1;
-    public static final int GOAL_TYPE_SEX = 3;
+    public static final int GOAL_TYPE_SEX = 2;
 
     public static Graphics g;
 
-    public static MainContainer mainContainer = new MainContainer();
+    public static  MainContainer mainContainer = new MainContainer();
 
     private static int evoObjectCouner;
 
@@ -47,4 +47,11 @@ public class Voc {
         System.out.println(message);
     }
 
+    public static synchronized MainContainer getMainContainer() {
+        return mainContainer;
+    }
+
+    public static void setMainContainer(MainContainer mainContainer) {
+        Voc.mainContainer = mainContainer;
+    }
 }

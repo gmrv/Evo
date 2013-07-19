@@ -57,9 +57,10 @@ public class Canvas extends JFrame {
                     try {
                         //Сербан, помогай
                         //Выкидывает java.util.ConcurrentModificationException
-                        //Voc.mainContainer.dropDieObject();
+
+                        Voc.getMainContainer().dropDieObject();
                         TimeUnit.MILLISECONDS.sleep(50);
-                        Voc.mainContainer.sendWakeUp();
+                        Voc.getMainContainer().sendWakeUp();
                         repaint();
 
                     } catch (InterruptedException e) {
