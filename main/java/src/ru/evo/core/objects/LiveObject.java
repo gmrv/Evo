@@ -1,6 +1,6 @@
 package ru.evo.core.objects;
 
-import ru.evo.core.Exceptions.InvalidGoalTypeException;
+import ru.evo.core.exceptions.InvalidGoalTypeException;
 
 /**
  * Created with IntelliJ IDEA.

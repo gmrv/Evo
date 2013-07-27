@@ -18,12 +18,10 @@ import java.util.concurrent.TimeUnit;
  */
 public class Canvas extends JFrame {
 
-
-
     private final Herbivore john = new Herbivore(350, 100);
 
-
     public Canvas() throws HeadlessException {
+
         setup();
 
         Voc.mainContainer.add(john);
@@ -49,20 +47,15 @@ public class Canvas extends JFrame {
             ));
         }
 
-
         Runnable r = new Runnable() {
             @Override
             public void run() {
                 while (true){
                     try {
-                        //Сербан, помогай
-                        //Выкидывает java.util.ConcurrentModificationException
-
                         Voc.getMainContainer().dropDieObject();
                         TimeUnit.MILLISECONDS.sleep(50);
                         Voc.getMainContainer().sendWakeUp();
                         repaint();
-
                     } catch (InterruptedException e) {
                         e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                     }
@@ -74,27 +67,19 @@ public class Canvas extends JFrame {
 
         Thread t = new Thread(r);
         t.start();
-
     }
 
     public void setup() {
         setTitle(Voc.MAIN_CANVAS_TITLE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(Voc.MAIN_CANVAS_WIDTH, Voc.MAIN_CANVAS_HEIGHT);
+        this.getContentPane().setBackground(Color.BLACK);
     }
 
     @Override
     public void paint(Graphics g) {
-
         super.paint(g);
-
         Voc.g = g;
-
-        g.setColor(Color.BLACK);
-        g.drawOval(99,99,3,3);
-
         Voc.mainContainer.sendPaint();
-
     }
-
 }

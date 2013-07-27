@@ -1,4 +1,4 @@
-package ru.evo.core.Exceptions;
+package ru.evo.core.exceptions;
 
 /**
  * Created with IntelliJ IDEA.

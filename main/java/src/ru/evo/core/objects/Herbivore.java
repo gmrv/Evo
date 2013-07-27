@@ -14,6 +14,8 @@ import java.util.ArrayList;
  */
 public class Herbivore extends LiveObject {
 
+
+
     public Herbivore(int aX, int aY) {
         super(aX, aY);
     }
@@ -143,8 +145,6 @@ public class Herbivore extends LiveObject {
             setCoordGoalX(Voc.getRand().nextInt(800));
             setCoordGoalY(Voc.getRand().nextInt(800));
         }
-
-
     }
 
     private void findSex(){

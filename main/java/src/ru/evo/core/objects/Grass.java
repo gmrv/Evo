@@ -13,27 +13,20 @@ import java.awt.*;
  */
 public class Grass extends Landscape {
 
-    //private static final Color fresh = new Color(0, 255, 3);
-    //private static final Color faded = new Color(0, 127, 14);
-    //private static final Color dry = new Color(255, 216, 0);
-
-    //private static final Color fresh = new Color(0, 0, 0);
-    //private static final Color faded = new Color(127, 127, 127);
-    //private static final Color dry = new Color(255, 255, 255);
-
-    private static final Color fresh = new Color(9, 127, 6);
-    private static final Color faded = new Color(0, 0, 255);
-    private static final Color dry = new Color(0, 0, 0);
+    private static final Color COLOR_FRESH = new Color(0, 255, 0);
+    private static final Color COLOR_FADED = new Color(175, 217, 0);
+    private static final Color COLOR_DRY = new Color(0, 57, 1);
 
     private float freshness = (float) 100.0;
-    private Color color = fresh;
 
     public Grass() {
+        this(0,0);
     }
 
     public Grass(int aX, int aY) {
         setCoordX(aX);
         setCoordY(aY);
+        setFreshness(100);
     }
 
     public Grass(int aX, int aY, float aFreshness) {
@@ -50,8 +43,8 @@ public class Grass extends Landscape {
 
     @Override
     public void paint() {
-        Voc.g.setColor(color);
-        Voc.g.drawOval(getCoordX(), getCoordY(), 3, 3);
+        Voc.g.setColor(getColor());
+        Voc.g.fillOval(getCoordX()-1, getCoordY()-1, 5, 5);
     }
 
     @Override
@@ -65,10 +58,12 @@ public class Grass extends Landscape {
 
     public void setFreshness(float aFreshness) {
         this.freshness = aFreshness;
-        if (freshness < 75 && freshness > 30) {
-            color = faded;
+        if (freshness > 75){
+            setColor(COLOR_FRESH);
+        }else if (freshness < 75 && freshness > 30) {
+            setColor(COLOR_FADED);
         } else if (freshness < 30 && freshness > 0) {
-            color = dry;
+            setColor(COLOR_DRY);
         } else if (freshness < 0) {
             setDie(true);
         }

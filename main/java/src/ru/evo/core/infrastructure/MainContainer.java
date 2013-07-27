@@ -2,6 +2,7 @@ package ru.evo.core.infrastructure;
 
 import ru.evo.common.Voc;
 import ru.evo.core.objects.BaseObject;
+import ru.evo.core.objects.Grass;
 import ru.evo.core.objects.Herbivore;
 
 import java.awt.*;
@@ -50,15 +51,31 @@ public class MainContainer implements Iterable<BaseObject> {
     }
 
     public void dropDieObject() {
+
+        int dieGrassCounter = 0;
+
         for(BaseObject bo : getMainContainer()){
             if(bo.isDie()){
-//                getMainContainer().remove(bo);
                 toDelete.add(bo);
+                if(true){
+                  dieGrassCounter = dieGrassCounter+1;
+                }
             }
         }
 
         getMainContainer().removeAll(toDelete);
 
+        for(int i=0; i < dieGrassCounter; i++){
+            this.add(
+                    new Grass(
+                            Voc.getRand().nextInt(800),
+                            Voc.getRand().nextInt(800),
+                            100
+                    )
+            );
+        }
+
+        toDelete.clear();
     }
 
     @Override

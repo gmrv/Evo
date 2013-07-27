@@ -6,18 +6,20 @@ package ru.evo.core.objects;
  */
 import ru.evo.common.Voc;
 
-import java.awt.Graphics;
+import java.awt.*;
 
 public abstract class BaseObject {
 
     private String id;
     private int coordX;
     private int coordY;
+    private Color color;
     private Graphics word;
     private boolean isDie;
 
     protected BaseObject() {
         setId(Voc.getNewId());
+
     }
 
     protected BaseObject(int aX, int aY) {
@@ -48,6 +50,14 @@ public abstract class BaseObject {
 
     public void setCoordY(int coordY) {
         this.coordY = coordY;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     public void setWord(Graphics word) {
