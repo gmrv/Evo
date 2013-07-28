@@ -10,11 +10,18 @@ import java.awt.*;
 
 public abstract class BaseObject {
 
+    private Graphics word;
+
     private String id;
+
     private int coordX;
     private int coordY;
     private Color color;
-    private Graphics word;
+
+    // Количество тиков, которые поймал объект.
+    // Служит для определения продолжительности жизни объекта.
+    private long pulse;
+    private long health;
     private boolean isDie;
 
     protected BaseObject() {
@@ -60,6 +67,29 @@ public abstract class BaseObject {
         this.color = color;
     }
 
+    public long getPulse() {
+        return pulse;
+    }
+
+    public void incPulse(){
+        pulse++;
+    }
+
+    public void setPulse(long pulse) {
+        this.pulse = pulse;
+    }
+
+    public long getHealth() {
+        return health;
+    }
+
+    public void setHealth(long health) {
+        this.health = health;
+        if(health<=0){
+            setDie(true);
+        }
+    }
+
     public void setWord(Graphics word) {
         this.word = word;
     }
@@ -87,7 +117,9 @@ public abstract class BaseObject {
      * Метод вызываемый таймером для всех объектов
      * в нем должен быть размещен вызов блока логики поведения объекта
      */
-    public abstract void wakeUp();
+    public void wakeUp(){
+        incPulse();
+    }
 
     /**
      * Отрисовка самого себя на канвас

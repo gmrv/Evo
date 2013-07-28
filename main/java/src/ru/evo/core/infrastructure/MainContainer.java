@@ -70,7 +70,7 @@ public class MainContainer implements Iterable<BaseObject> {
                     new Grass(
                             Voc.getRand().nextInt(800),
                             Voc.getRand().nextInt(800),
-                            100
+                            1
                     )
             );
         }

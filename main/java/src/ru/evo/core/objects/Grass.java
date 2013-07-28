@@ -13,30 +13,28 @@ import java.awt.*;
  */
 public class Grass extends Landscape {
 
-    private static final Color COLOR_FRESH = new Color(0, 255, 0);
-    private static final Color COLOR_FADED = new Color(175, 217, 0);
-    private static final Color COLOR_DRY = new Color(0, 57, 1);
-
-    private float freshness = (float) 100.0;
+    private static final Color COLOR_FRESH = new Color(0, 255, 61);
+    private static final Color COLOR_RIPE = new Color(2, 160, 5);
+    private static final Color COLOR_DRY = new Color(205, 153, 4);
+    public static final long PULSE_PEAK_FOR_GRASS = 500;
 
     public Grass() {
-        this(0,0);
+        this(0, 0);
     }
 
     public Grass(int aX, int aY) {
-        setCoordX(aX);
-        setCoordY(aY);
-        setFreshness(100);
+        this(aX, aY, 1);
     }
 
-    public Grass(int aX, int aY, float aFreshness) {
+    public Grass(int aX, int aY, long aPulse) {
         setCoordX(aX);
         setCoordY(aY);
-        setFreshness(aFreshness);
+        setPulse(aPulse);
     }
 
     @Override
     public void wakeUp() {
+        super.wakeUp();
         behavior();
         paint();
     }
@@ -49,23 +47,31 @@ public class Grass extends Landscape {
 
     @Override
     public void behavior() {
-        setFreshness((float) (getFreshness()-0.1));
+        long pulse = getPulse();
+        long health = getHealth();
+
+        if(pulse<PULSE_PEAK_FOR_GRASS){
+            setHealth(pulse);
+        }else{
+            setHealth(--health);
+        }
     }
 
-    public float getFreshness() {
-        return freshness;
-    }
+    public void setHealth(long aHealthPoint) {
 
-    public void setFreshness(float aFreshness) {
-        this.freshness = aFreshness;
-        if (freshness > 75){
-            setColor(COLOR_FRESH);
-        }else if (freshness < 75 && freshness > 30) {
-            setColor(COLOR_FADED);
-        } else if (freshness < 30 && freshness > 0) {
+        super.setHealth(aHealthPoint);
+
+        long pulse = getPulse();
+        long health = getHealth();
+
+        if(pulse<PULSE_PEAK_FOR_GRASS){
+            if(health<(PULSE_PEAK_FOR_GRASS/2)){
+                setColor(COLOR_FRESH);
+            }else{
+                setColor(COLOR_RIPE);
+            }
+        }else{
             setColor(COLOR_DRY);
-        } else if (freshness < 0) {
-            setDie(true);
         }
     }
 }
