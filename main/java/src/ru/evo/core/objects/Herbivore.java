@@ -14,25 +14,60 @@ import java.util.ArrayList;
  */
 public class Herbivore extends LiveObject {
 
-
+    public long maxHealth = 3000;
 
     public Herbivore(int aX, int aY) {
-        super(aX, aY);
+        this(aX, aY, 3000);
     }
+
+    public Herbivore(int aX, int aY, long aHealth) {
+        this(aX, aY, aHealth, 100);
+    }
+
+    public Herbivore(int aX, int aY, long aHealth, int aSatiety) {
+        super(aX, aY);
+        setHealth(aHealth);
+        setSatiety(aSatiety);
+    }
+
 
     @Override
     public void paint() {
-        Voc.g.setColor(Color.RED);
+        if(getHealth()<1000){
+            Voc.g.setColor(Color.YELLOW);
+        }else{
+            Voc.g.setColor(Color.RED);
+        }
+
         Voc.g.drawOval(getCoordX(), getCoordY(), 1, 1);
     }
 
     @Override
     public void behavior() {
-        if(hasTheGoal()){
-            setNextSteepCoordTowardsGoal();
-            move();
-        }else{
-            findGoal(Voc.GOAL_TYPE_FOOD);
+
+        decSatiety();
+
+        int lSatiety = getSatiety();
+
+        // я голоден
+        if (lSatiety < 100 && lSatiety > 75 ){
+            // я хочу размножаться
+        }else if(lSatiety < 75){
+            // я хочу есть
+            // я на пути к еде?
+            if(hasTheGoal()){
+                // да, делаю шаг к цели
+                setNextSteepCoordTowardsGoal();
+                move();
+            }else{
+                // нет, ищу еду
+                findGoal(Voc.GOAL_TYPE_FOOD);
+            }
+        }
+
+        if(lSatiety < 10){
+            //подыхаем потихоньку
+            decHealth(2);
         }
     }
 
@@ -71,6 +106,14 @@ public class Herbivore extends LiveObject {
 
         if(L==0){
             setHasTheGoal(false);
+
+            //todo: Временно проставляем сытость тут
+            if(findIfood()){
+                setSatiety(100);
+                setHealth(maxHealth);
+            }
+
+
             dX = 0;
             dY = 0;
         }else{
@@ -88,6 +131,8 @@ public class Herbivore extends LiveObject {
     }
 
     private void findFood(){
+
+        //todo: Вынести кусок который возвращает массив найденных объектов в одтельный метод getNearestGrasses(findRadius)
 
         //Voc.writeLog( this + " search started");
 
@@ -130,8 +175,7 @@ public class Herbivore extends LiveObject {
 
         }
 
-        // Если в найденых объектах меньше двух, отправляем в случайную точку
-        if(findedObjects.size()>1){
+        if(findedObjects.size()>0){
             int index = Voc.getRand().nextInt(findedObjects.size());
             setCoordGoalX(findedObjects.get(index).getCoordX());
             setCoordGoalY(findedObjects.get(index).getCoordY());
@@ -144,6 +188,48 @@ public class Herbivore extends LiveObject {
     private void findSex(){
         setCoordGoalX(Voc.getRand().nextInt(800));
         setCoordGoalY(Voc.getRand().nextInt(800));
+    }
+
+    private boolean findIfood(){
+
+        //todo: Использовать getNearestGrasses(findRadius)
+
+        int findRadius = 5;
+
+        int x1 = getCoordX() - findRadius;
+        int y1 = getCoordY() - findRadius;
+        int x2 = getCoordX() + findRadius;
+        int y2 = getCoordY() + findRadius;
+
+        ArrayList<BaseObject> findedObjects = new ArrayList<BaseObject>();
+
+        for(BaseObject bo : Voc.mainContainer){
+            if(bo.getClass().getSimpleName().equals("Grass")){
+                int x = bo.getCoordX();
+                int y = bo.getCoordY();
+                //Voc.writeLog("{x = " + x + ", y = " + y + "}");
+                if( x > x1 ){
+                    //Voc.writeLog("x > x1");
+                    if(x < x2){
+                        //Voc.writeLog("x < x2");
+                        if(y > y1){
+                            //Voc.writeLog("y < y1");
+                            if(y < y2){
+                                //Voc.writeLog("y < y2");
+                                findedObjects.add(bo);
+                                //Voc.writeLog("ok. added. size = " + findedObjects.size());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (findedObjects.size() > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
 

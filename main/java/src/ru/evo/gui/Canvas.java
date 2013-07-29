@@ -18,13 +18,11 @@ import java.util.concurrent.TimeUnit;
  */
 public class Canvas extends JFrame {
 
-    private final Herbivore john = new Herbivore(350, 100);
-
     public Canvas() throws HeadlessException {
 
         setup();
 
-        for(int i = 0; i<50; i++){
+        for(int i = 0; i<100; i++){
 
             Herbivore hbvr = new Herbivore(
                     Voc.getRand().nextInt(800),

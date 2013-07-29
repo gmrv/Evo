@@ -71,20 +71,26 @@ public abstract class BaseObject {
         return pulse;
     }
 
-    public void incPulse(){
-        pulse++;
-    }
-
     public void setPulse(long pulse) {
         this.pulse = pulse;
     }
 
+    public void incPulse(){
+        pulse++;
+    }
     public long getHealth() {
         return health;
     }
 
     public void setHealth(long health) {
         this.health = health;
+        if(health<=0){
+            setDie(true);
+        }
+    }
+
+    public void decHealth(long healthPoint) {
+        this.health = this.health - healthPoint;
         if(health<=0){
             setDie(true);
         }

@@ -31,6 +31,8 @@ public class Voc {
 
     private static int evoObjectCouner;
 
+    public enum evoObjects { GRASS, HERBIVORE }
+
     public static Random getRand() {
         return rand;
     }

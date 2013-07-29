@@ -52,28 +52,40 @@ public class MainContainer implements Iterable<BaseObject> {
 
     public void dropDieObject() {
 
-        int dieGrassCounter = 0;
+
+        int grassCounter = 0;
+        int herbivoreCounter = 0;
 
         for(BaseObject bo : getMainContainer()){
+            String className = bo.getClass().getSimpleName().toUpperCase();
             if(bo.isDie()){
                 toDelete.add(bo);
-                if(true){
-                  dieGrassCounter = dieGrassCounter+1;
+            }else{
+                switch (Voc.evoObjects.valueOf(className)){
+                    case GRASS: grassCounter++; break;
+                    case HERBIVORE: herbivoreCounter++; break;
                 }
             }
         }
 
         getMainContainer().removeAll(toDelete);
 
-        for(int i=0; i < dieGrassCounter; i++){
-            this.add(
-                    new Grass(
-                            Voc.getRand().nextInt(800),
-                            Voc.getRand().nextInt(800),
-                            1
-                    )
-            );
+        if(grassCounter < 2){
+            this.add(new Grass(100, 100, 1));
+            this.add(new Grass(140, 140, 1));
         }
+
+
+
+//        for(int i=0; i < dieGrassCounter; i++){
+//            this.add(
+//                    new Grass(
+//                            Voc.getRand().nextInt(800),
+//                            Voc.getRand().nextInt(800),
+//                            1
+//                    )
+//            );
+//        }
 
         toDelete.clear();
     }

@@ -19,6 +19,8 @@ public abstract class LiveObject extends BaseObject {
 
     private boolean hasTheGoal;
 
+    private int satiety; // Сытость
+
     protected LiveObject() {
     }
 
@@ -49,6 +51,18 @@ public abstract class LiveObject extends BaseObject {
     public void setCoordGoalX(int coordGoalX) {
         this.coordGoalX = coordGoalX;
         this.setHasTheGoal(true);
+    }
+
+    public int getSatiety() {
+        return satiety;
+    }
+
+    public void setSatiety(int satiety) {
+        this.satiety = satiety;
+    }
+
+    public void decSatiety() {
+        this.satiety--;
     }
 
     public int getCoordGoalY() {
