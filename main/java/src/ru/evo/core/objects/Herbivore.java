@@ -37,13 +37,6 @@ public class Herbivore extends LiveObject {
     }
 
     @Override
-    public void wakeUp() {
-        super.wakeUp();
-        behavior();
-        paint();
-    }
-
-    @Override
     public void move() {
         setCoordX(getCoordNextX());
         setCoordY(getCoordNextY());

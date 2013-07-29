@@ -119,6 +119,8 @@ public abstract class BaseObject {
      */
     public void wakeUp(){
         incPulse();
+        behavior();
+        paint();
     }
 
     /**

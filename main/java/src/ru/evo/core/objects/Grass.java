@@ -33,13 +33,6 @@ public class Grass extends Landscape {
     }
 
     @Override
-    public void wakeUp() {
-        super.wakeUp();
-        behavior();
-        paint();
-    }
-
-    @Override
     public void paint() {
         Voc.g.setColor(getColor());
         Voc.g.fillOval(getCoordX()-1, getCoordY()-1, 5, 5);
