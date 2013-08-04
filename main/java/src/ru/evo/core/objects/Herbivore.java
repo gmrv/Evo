@@ -132,43 +132,7 @@ public class Herbivore extends LiveObject {
 
     private void findFood(){
 
-        //todo: Вынести кусок который возвращает массив найденных объектов в одтельный метод getNearestGrasses(findRadius)
-
-        //Voc.writeLog( this + " search started");
-
-        int findRadius = 50;
-
-        int x1 = getCoordX() - findRadius;
-        int y1 = getCoordY() - findRadius;
-        int x2 = getCoordX() + findRadius;
-        int y2 = getCoordY() + findRadius;
-
-        //Voc.writeLog("{xa = " + getCoordX() + ", ya = " + getCoordY() + "}");
-        //Voc.writeLog("{x1 = " + x1 + ", y1 = " + y1 + "}, " + "{x2 = " + x2 + ", y2 = " + y2 + "}");
-
-        ArrayList<BaseObject> findedObjects = new ArrayList<BaseObject>();
-
-        for(BaseObject bo : Voc.mainContainer){
-            if(bo.getClass().getSimpleName().equals("Grass")){
-                int x = bo.getCoordX();
-                int y = bo.getCoordY();
-                //Voc.writeLog("{x = " + x + ", y = " + y + "}");
-                if( x > x1 ){
-                    //Voc.writeLog("x > x1");
-                    if(x < x2){
-                        //Voc.writeLog("x < x2");
-                        if(y > y1){
-                            //Voc.writeLog("y < y1");
-                            if(y < y2){
-                                //Voc.writeLog("y < y2");
-                                findedObjects.add(bo);
-                                //Voc.writeLog("ok. added. size = " + findedObjects.size());
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        ArrayList<BaseObject> findedObjects = getObjectsInRange(100, Voc.evoObjects.GRASS);
 
         //todo: Поиск ближайшего объекта
         for(BaseObject bo : findedObjects){
@@ -192,19 +156,26 @@ public class Herbivore extends LiveObject {
 
     private boolean findIfood(){
 
-        //todo: Использовать getNearestGrasses(findRadius)
+        ArrayList<BaseObject> findedObjects = getObjectsInRange(5, Voc.evoObjects.GRASS);
 
-        int findRadius = 5;
+        if (findedObjects.size() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
-        int x1 = getCoordX() - findRadius;
-        int y1 = getCoordY() - findRadius;
-        int x2 = getCoordX() + findRadius;
-        int y2 = getCoordY() + findRadius;
+    public ArrayList<BaseObject> getObjectsInRange(int findRange, Voc.evoObjects aEvoObjects){
+        ArrayList<BaseObject> result = new ArrayList<BaseObject>();
 
-        ArrayList<BaseObject> findedObjects = new ArrayList<BaseObject>();
+        int x1 = getCoordX() - findRange;
+        int y1 = getCoordY() - findRange;
+        int x2 = getCoordX() + findRange;
+        int y2 = getCoordY() + findRange;
 
         for(BaseObject bo : Voc.mainContainer){
-            if(bo.getClass().getSimpleName().equals("Grass")){
+            String className = bo.getClass().getSimpleName().toUpperCase();
+            if(Voc.evoObjects.valueOf(className) == aEvoObjects){
                 int x = bo.getCoordX();
                 int y = bo.getCoordY();
                 //Voc.writeLog("{x = " + x + ", y = " + y + "}");
@@ -216,7 +187,7 @@ public class Herbivore extends LiveObject {
                             //Voc.writeLog("y < y1");
                             if(y < y2){
                                 //Voc.writeLog("y < y2");
-                                findedObjects.add(bo);
+                                result.add(bo);
                                 //Voc.writeLog("ok. added. size = " + findedObjects.size());
                             }
                         }
@@ -225,11 +196,8 @@ public class Herbivore extends LiveObject {
             }
         }
 
-        if (findedObjects.size() > 0){
-            return true;
-        }else{
-            return false;
-        }
+        return result;
+
     }
 }
 

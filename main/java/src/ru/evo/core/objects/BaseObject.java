@@ -10,7 +10,7 @@ import java.awt.*;
 
 public abstract class BaseObject {
 
-    private Graphics word;
+    private Graphics world;
 
     private String id;
 
@@ -21,6 +21,7 @@ public abstract class BaseObject {
     // Количество тиков, которые поймал объект.
     // Служит для определения продолжительности жизни объекта.
     private long pulse;
+    // У мертвых объетов тоже может быть здоровье
     private long health;
     private boolean isDie;
 
@@ -96,12 +97,12 @@ public abstract class BaseObject {
         }
     }
 
-    public void setWord(Graphics word) {
-        this.word = word;
+    public void setWorld(Graphics world) {
+        this.world = world;
     }
 
-    public Graphics getWord() {
-        return word;
+    public Graphics getWorld() {
+        return world;
     }
 
     public boolean isDie() {
