@@ -1,6 +1,8 @@
 package ru.evo.core.objects;
 
 import ru.evo.common.Voc;
+import ru.evo.core.behavior.Finder;
+import ru.evo.core.infrastructure.CoordProxy;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,6 +18,8 @@ public class Herbivore extends LiveObject {
 
     public long maxHealth = 3000;
 
+    private Finder finder;
+
     public Herbivore(int aX, int aY) {
         this(aX, aY, 3000);
     }
@@ -28,6 +32,7 @@ public class Herbivore extends LiveObject {
         super(aX, aY);
         setHealth(aHealth);
         setSatiety(aSatiety);
+        finder = new Finder(this);
     }
 
 
@@ -61,7 +66,7 @@ public class Herbivore extends LiveObject {
                 move();
             }else{
                 // нет, ищу еду
-                findGoal(Voc.GOAL_TYPE_FOOD);
+                findGoal(Voc.evoObjects.GRASS);
             }
         }
 
@@ -78,22 +83,19 @@ public class Herbivore extends LiveObject {
     }
 
     @Override
-    public void findGoal(int goalType){
-        switch (goalType) {
-            case 0:
-                findWater();
-                break;
-            case 1:
-                findFood();
-                break;
-            case 2:
-                findSex();
-                break;
-            default:
-                Voc.writeLog("Invalid Goal Type:" + goalType); //throw new InvalidGoalTypeException(Integer.toString(goalType));
+    public void findGoal(Voc.evoObjects goalType){
+        BaseObject goal = finder.findGoalObject(goalType);
+        if(goal!=null){
+            setGoal(goal);
+        }else{
+            setCoordGoalX(Voc.getRand().nextInt(800));
+            setCoordGoalY(Voc.getRand().nextInt(800));
         }
     }
 
+    //todo: переместить в ru.evo.behavior.Mover
+    //На вход будет получать координаты цели,
+    //возвращать координаты следующего шага.
     void setNextSteepCoordTowardsGoal() {
         int i, L, xstart, ystart, xend, yend;
         float dX, dY;
@@ -132,17 +134,10 @@ public class Herbivore extends LiveObject {
 
     private void findFood(){
 
-        ArrayList<BaseObject> findedObjects = getObjectsInRange(100, Voc.evoObjects.GRASS);
+        Grass food = (Grass) finder.findGoalObject(Voc.evoObjects.GRASS);
 
-        //todo: Поиск ближайшего объекта
-        for(BaseObject bo : findedObjects){
-
-        }
-
-        if(findedObjects.size()>0){
-            int index = Voc.getRand().nextInt(findedObjects.size());
-            setCoordGoalX(findedObjects.get(index).getCoordX());
-            setCoordGoalY(findedObjects.get(index).getCoordY());
+        if(food!=null){
+            setGoal(food);
         }else{
             setCoordGoalX(Voc.getRand().nextInt(800));
             setCoordGoalY(Voc.getRand().nextInt(800));
@@ -155,49 +150,14 @@ public class Herbivore extends LiveObject {
     }
 
     private boolean findIfood(){
-
-        ArrayList<BaseObject> findedObjects = getObjectsInRange(5, Voc.evoObjects.GRASS);
-
-        if (findedObjects.size() > 0){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    public ArrayList<BaseObject> getObjectsInRange(int findRange, Voc.evoObjects aEvoObjects){
-        ArrayList<BaseObject> result = new ArrayList<BaseObject>();
-
-        int x1 = getCoordX() - findRange;
-        int y1 = getCoordY() - findRange;
-        int x2 = getCoordX() + findRange;
-        int y2 = getCoordY() + findRange;
-
-        for(BaseObject bo : Voc.mainContainer){
-            String className = bo.getClass().getSimpleName().toUpperCase();
-            if(Voc.evoObjects.valueOf(className) == aEvoObjects){
-                int x = bo.getCoordX();
-                int y = bo.getCoordY();
-                //Voc.writeLog("{x = " + x + ", y = " + y + "}");
-                if( x > x1 ){
-                    //Voc.writeLog("x > x1");
-                    if(x < x2){
-                        //Voc.writeLog("x < x2");
-                        if(y > y1){
-                            //Voc.writeLog("y < y1");
-                            if(y < y2){
-                                //Voc.writeLog("y < y2");
-                                result.add(bo);
-                                //Voc.writeLog("ok. added. size = " + findedObjects.size());
-                            }
-                        }
-                    }
-                }
+        if(getGoal()!=null){
+            if(getGoal().getCoord().equals(this.getCoord())){
+                return true;
             }
         }
-
-        return result;
-
+        return false;
     }
+
+
 }
 

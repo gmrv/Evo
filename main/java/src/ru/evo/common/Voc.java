@@ -25,13 +25,15 @@ public class Voc {
     public static final int GOAL_TYPE_FOOD = 1;
     public static final int GOAL_TYPE_SEX = 2;
 
+    public static final int HERBIVORE_FIND_RANGE = 50;
+
     public static Graphics g;
 
     public static  MainContainer mainContainer = new MainContainer();
 
     private static int evoObjectCouner;
 
-    public enum evoObjects { GRASS, HERBIVORE }
+    public enum evoObjects { WATER, GRASS, HERBIVORE, CARNIVORE }
 
     public static Random getRand() {
         return rand;

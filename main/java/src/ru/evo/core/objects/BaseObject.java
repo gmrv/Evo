@@ -5,6 +5,7 @@ package ru.evo.core.objects;
  *
  */
 import ru.evo.common.Voc;
+import ru.evo.core.infrastructure.CoordProxy;
 
 import java.awt.*;
 
@@ -18,6 +19,8 @@ public abstract class BaseObject {
     private int coordY;
     private Color color;
 
+    private CoordProxy coord;
+
     // Количество тиков, которые поймал объект.
     // Служит для определения продолжительности жизни объекта.
     private long pulse;
@@ -26,14 +29,14 @@ public abstract class BaseObject {
     private boolean isDie;
 
     protected BaseObject() {
+        this(0,0);
         setId(Voc.getNewId());
-
     }
 
     protected BaseObject(int aX, int aY) {
-        setId(Voc.getNewId());
         setCoordX(aX);
         setCoordY(aY);
+        coord = new CoordProxy();
     }
 
     public String getId() {
@@ -66,6 +69,18 @@ public abstract class BaseObject {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public CoordProxy getCoord() {
+        coord.x = getCoordX();
+        coord.y = getCoordY();
+        return coord;
+    }
+
+    public void setCoord(CoordProxy coord) {
+        this.coord = coord;
+        setCoordX(coord.x);
+        setCoordY(coord.y);
     }
 
     public long getPulse() {

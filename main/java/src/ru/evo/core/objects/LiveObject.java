@@ -1,6 +1,8 @@
 package ru.evo.core.objects;
 
+import ru.evo.common.Voc;
 import ru.evo.core.exceptions.InvalidGoalTypeException;
+import ru.evo.core.infrastructure.CoordProxy;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,6 +18,8 @@ public abstract class LiveObject extends BaseObject {
 
     private int coordGoalX;
     private int coordGoalY;
+    private CoordProxy coordGoal;
+    private BaseObject goal;
 
     private boolean hasTheGoal;
 
@@ -53,6 +57,44 @@ public abstract class LiveObject extends BaseObject {
         this.setHasTheGoal(true);
     }
 
+    public int getCoordGoalY() {
+        return coordGoalY;
+    }
+
+    public void setCoordGoalY(int coordGoalY) {
+        this.coordGoalY = coordGoalY;
+        this.setHasTheGoal(true);
+    }
+
+    public CoordProxy getCoordGoal() {
+        coordGoal.x = getCoordGoalX();
+        coordGoal.y = getCoordGoalY();
+        return coordGoal;
+    }
+
+    public void setCoordGoal(CoordProxy coordGoal) {
+        this.coordGoal = coordGoal;
+        setCoordGoalX(coordGoal.x);
+        setCoordGoalY(coordGoal.y);
+    }
+
+    public BaseObject getGoal() {
+        return goal;
+    }
+
+    public void setGoal(BaseObject goal) {
+        this.goal = goal;
+        setCoordGoal(goal.getCoord());
+    }
+
+    public boolean hasTheGoal() {
+        return hasTheGoal;
+    }
+
+    public void setHasTheGoal(boolean hasTheGoal) {
+        this.hasTheGoal = hasTheGoal;
+    }
+
     public int getSatiety() {
         return satiety;
     }
@@ -65,24 +107,7 @@ public abstract class LiveObject extends BaseObject {
         this.satiety--;
     }
 
-    public int getCoordGoalY() {
-        return coordGoalY;
-    }
-
-    public void setCoordGoalY(int coordGoalY) {
-        this.coordGoalY = coordGoalY;
-        this.setHasTheGoal(true);
-    }
-
-    public boolean hasTheGoal() {
-        return hasTheGoal;
-    }
-
-    public void setHasTheGoal(boolean hasTheGoal) {
-        this.hasTheGoal = hasTheGoal;
-    }
-
     public abstract void move();
 
-    public abstract void findGoal(int goalType) throws InvalidGoalTypeException;
+    public abstract void findGoal(Voc.evoObjects goalType);
 }
