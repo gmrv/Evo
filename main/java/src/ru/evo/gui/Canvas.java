@@ -29,8 +29,8 @@ public class Canvas extends JFrame {
                     Voc.getRand().nextInt(800)
             );
 
-            hbvr.setCoordGoalX(Voc.getRand().nextInt(800));
-            hbvr.setCoordGoalY(Voc.getRand().nextInt(800));
+            //hbvr.setCoordGoalX(Voc.getRand().nextInt(800));
+            //hbvr.setCoordGoalY(Voc.getRand().nextInt(800));
 
             Voc.mainContainer.add(hbvr);
         }

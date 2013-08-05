@@ -16,11 +16,6 @@ public abstract class LiveObject extends BaseObject {
     private int coordNextX;  // Next creature x coordinate
     private int coordNextY;  // Next creature y coordinate
 
-    private int coordGoalX;
-    private int coordGoalY;
-    private CoordProxy coordGoal;
-    private BaseObject goal;
-
     private boolean hasTheGoal;
 
     private int satiety; // Сытость
@@ -46,45 +41,6 @@ public abstract class LiveObject extends BaseObject {
 
     public void setCoordNextY(int coordNextY) {
         this.coordNextY = coordNextY;
-    }
-
-    public int getCoordGoalX() {
-        return coordGoalX;
-    }
-
-    public void setCoordGoalX(int coordGoalX) {
-        this.coordGoalX = coordGoalX;
-        this.setHasTheGoal(true);
-    }
-
-    public int getCoordGoalY() {
-        return coordGoalY;
-    }
-
-    public void setCoordGoalY(int coordGoalY) {
-        this.coordGoalY = coordGoalY;
-        this.setHasTheGoal(true);
-    }
-
-    public CoordProxy getCoordGoal() {
-        coordGoal.x = getCoordGoalX();
-        coordGoal.y = getCoordGoalY();
-        return coordGoal;
-    }
-
-    public void setCoordGoal(CoordProxy coordGoal) {
-        this.coordGoal = coordGoal;
-        setCoordGoalX(coordGoal.x);
-        setCoordGoalY(coordGoal.y);
-    }
-
-    public BaseObject getGoal() {
-        return goal;
-    }
-
-    public void setGoal(BaseObject goal) {
-        this.goal = goal;
-        setCoordGoal(goal.getCoord());
     }
 
     public boolean hasTheGoal() {
