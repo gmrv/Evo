@@ -13,6 +13,9 @@ import ru.evo.core.objects.LiveObject;
  */
 public class Mover {
 
+    //todo: Реализовать его как посредника, который будет оперировать с данными host.
+    //Убрать все данные из этого класса. Тут только логика.
+
     private LiveObject host;
     private BaseObject goal;
     private int coordGoalX;

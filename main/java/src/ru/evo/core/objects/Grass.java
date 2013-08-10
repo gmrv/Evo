@@ -36,6 +36,7 @@ public class Grass extends Landscape {
     public void paint() {
         Voc.g.setColor(getColor());
         Voc.g.fillOval(getCoordX()-1, getCoordY()-1, 5, 5);
+        //Voc.g.drawImage(Voc.img, getCoordX(), getCoordY(), 3, 3, null);
     }
 
     @Override

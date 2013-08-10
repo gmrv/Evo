@@ -40,12 +40,13 @@ public class Herbivore extends LiveObject {
 
     @Override
     public void paint() {
-        if(getHealth()<1000){
-            Voc.g.setColor(Color.YELLOW);
-        }else{
-            Voc.g.setColor(Color.RED);
-        }
-        Voc.g.drawOval(getCoordX(), getCoordY(), 1, 1);
+        //if(getHealth()<1000){
+        //    Voc.g.setColor(Color.YELLOW);
+        //}else{
+        //    Voc.g.setColor(Color.RED);
+        //}
+        //Voc.g.drawOval(getCoordX(), getCoordY(), 1, 1);
+        Voc.g.drawImage(Voc.img, getCoordX(), getCoordY(), 3, 3, null);
     }
 
     @Override

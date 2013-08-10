@@ -4,6 +4,7 @@ import com.sun.xml.internal.ws.util.StringUtils;
 import ru.evo.core.infrastructure.MainContainer;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 import java.lang.String;
 
@@ -28,6 +29,8 @@ public class Voc {
     public static final int HERBIVORE_FIND_RANGE = 50;
 
     public static Graphics g;
+
+    public static BufferedImage img;
 
     public static  MainContainer mainContainer = new MainContainer();
 

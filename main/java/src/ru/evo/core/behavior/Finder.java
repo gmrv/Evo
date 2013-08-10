@@ -8,6 +8,8 @@ import ru.evo.core.objects.LiveObject;
 import java.util.ArrayList;
 
 public class Finder {
+    //todo: Реализовать его как посредника, который будет оперировать с данными host.
+    //Убрать все данные из этого класса. Тут только логика.
 
     LiveObject host;
 
