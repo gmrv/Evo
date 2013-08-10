@@ -89,10 +89,12 @@ public class Canvas extends JFrame {
 
     @Override
     public void paint(Graphics g) {
-        buffer = createImage (800, 800);
+        //if(buffer==null) //посмотреть треки
+            buffer = createImage (800, 800);
         Graphics screengc = null;
         screengc = g;
         g = buffer.getGraphics();
+        g.fillRect(0,0,800,800);
 
         //super.paint(g);
         Voc.g = g;
