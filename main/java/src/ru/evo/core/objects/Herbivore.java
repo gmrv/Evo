@@ -3,10 +3,8 @@ package ru.evo.core.objects;
 import ru.evo.common.Voc;
 import ru.evo.core.behavior.Finder;
 import ru.evo.core.behavior.Mover;
-import ru.evo.core.infrastructure.CoordProxy;
 
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * Created with IntelliJ IDEA.
@@ -46,6 +44,8 @@ public class Herbivore extends LiveObject {
             Voc.g.setColor(Color.RED);
         }
         Voc.g.drawOval(getCoordX(), getCoordY(), 1, 1);
+        Voc.g.setColor(Color.DARK_GRAY);
+        Voc.g.drawOval(getCoordX()-Voc.HERBIVORE_FIND_RADIUS, getCoordY()-Voc.HERBIVORE_FIND_RADIUS, Voc.HERBIVORE_FIND_RADIUS *2, Voc.HERBIVORE_FIND_RADIUS *2);
         //Voc.g.drawImage(Voc.img, getCoordX(), getCoordY(), 3, 3, null);
     }
 

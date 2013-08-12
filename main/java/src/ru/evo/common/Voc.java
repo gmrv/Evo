@@ -26,7 +26,7 @@ public class Voc {
     public static final int GOAL_TYPE_FOOD = 1;
     public static final int GOAL_TYPE_SEX = 2;
 
-    public static final int HERBIVORE_FIND_RANGE = 50;
+    public static final int HERBIVORE_FIND_RADIUS = 50;
 
     public static Graphics g;
 

@@ -27,11 +27,11 @@ public class Canvas extends JFrame {
 
     public Canvas() throws HeadlessException {
 
-        try {
-            Voc.img = ImageIO.read(new File("C:\\1.png"));
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+//        try {
+//            Voc.img = ImageIO.read(new File("C:\\1.png"));
+//        } catch (IOException e) {
+//            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+//        }
 
         setup();
 

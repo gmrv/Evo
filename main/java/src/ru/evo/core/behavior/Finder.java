@@ -15,38 +15,31 @@ public class Finder {
 
     ArrayList<BaseObject> lastResult;
 
-    public Finder(LiveObject aHost){
+    public Finder(LiveObject aHost) {
         host = aHost;
         lastResult = new ArrayList<BaseObject>();
     }
 
-    public ArrayList<BaseObject> getObjectsInRange(int findRange, Voc.evoObjects aEvoObjects){
+    public ArrayList<BaseObject> getObjectsInRange(int findRadius, Voc.evoObjects aEvoObjects) {
         ArrayList<BaseObject> result = new ArrayList<BaseObject>();
 
-        int x1 = host.getCoordX() - findRange;
-        int y1 = host.getCoordY() - findRange;
-        int x2 = host.getCoordX() + findRange;
-        int y2 = host.getCoordY() + findRange;
+        int R = findRadius;
+        int x0 = host.getCoordX();
+        int y0 = host.getCoordY();
+        int x1 = host.getCoordX() - findRadius;
+        int y1 = host.getCoordY() - findRadius;
+        int x2 = host.getCoordX() + findRadius;
+        int y2 = host.getCoordY() + findRadius;
 
-        for(BaseObject bo : Voc.mainContainer){
+
+        for (BaseObject bo : Voc.mainContainer) {
             String className = bo.getClass().getSimpleName().toUpperCase();
-            if(Voc.evoObjects.valueOf(className) == aEvoObjects){
+            if (Voc.evoObjects.valueOf(className) == aEvoObjects) {
                 int x = bo.getCoordX();
                 int y = bo.getCoordY();
                 //Voc.writeLog("{x = " + x + ", y = " + y + "}");
-                if( x > x1 ){
-                    //Voc.writeLog("x > x1");
-                    if(x < x2){
-                        //Voc.writeLog("x < x2");
-                        if(y > y1){
-                            //Voc.writeLog("y < y1");
-                            if(y < y2){
-                                //Voc.writeLog("y < y2");
-                                result.add(bo);
-                                //Voc.writeLog("ok. added. size = " + findedObjects.size());
-                            }
-                        }
-                    }
+                if (((x - x0) * (x - x0) + (y - y0) * (y - y0)) <= (R * R)) {
+                    result.add(bo);
                 }
             }
         }
@@ -55,12 +48,12 @@ public class Finder {
 
     }
 
-    public CoordProxy findGoalCoord(Voc.evoObjects aGoalType){
+    public CoordProxy findGoalCoord(Voc.evoObjects aGoalType) {
         CoordProxy result = new CoordProxy();
 
-        lastResult = getObjectsInRange(Voc.HERBIVORE_FIND_RANGE, aGoalType);
+        lastResult = getObjectsInRange(Voc.HERBIVORE_FIND_RADIUS, aGoalType);
 
-        if(lastResult.size()>0){
+        if (lastResult.size() > 0) {
             int index = Voc.getRand().nextInt(lastResult.size());
             result.x = lastResult.get(index).getCoordX();
             result.y = lastResult.get(index).getCoordY();
@@ -69,12 +62,12 @@ public class Finder {
         return result;
     }
 
-    public BaseObject findGoalObject(Voc.evoObjects aGoalType){
+    public BaseObject findGoalObject(Voc.evoObjects aGoalType) {
         BaseObject result = null;
 
-        lastResult = getObjectsInRange(Voc.HERBIVORE_FIND_RANGE, aGoalType);
+        lastResult = getObjectsInRange(Voc.HERBIVORE_FIND_RADIUS, aGoalType);
 
-        if(lastResult.size()>0){
+        if (lastResult.size() > 0) {
             int index = Voc.getRand().nextInt(lastResult.size());
             result = lastResult.get(index);
         }
