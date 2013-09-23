@@ -38,9 +38,11 @@ public class Finder {
                 int x = bo.getCoordX();
                 int y = bo.getCoordY();
                 //Voc.writeLog("{x = " + x + ", y = " + y + "}");
-                if (((x - x0) * (x - x0) + (y - y0) * (y - y0)) <= (R * R)) {
+
+                if (((x - x0) * (x - x0) + (y - y0) * (y - y0)) <= (R * R)) {     //Crucial feature
                     result.add(bo);
                 }
+
             }
         }
 
