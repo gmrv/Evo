@@ -1,12 +1,6 @@
 package ru.evo.core.infrastructure;
 
-/**
- * Created with IntelliJ IDEA.
- * User: GUMEROV_SHF
- * Date: 05.08.13
- * Time: 19:50
- * To change this template use File | Settings | File Templates.
- */
+//Класс позволяет более удобно работать с координатами точки игрового поля.
 public class CoordProxy {
     public int x;
     public int y;
@@ -22,10 +16,6 @@ public class CoordProxy {
     }
 
     public boolean equals (CoordProxy b){
-        if(this.x == b.x && this.y == b.y){
-            return true;
-        }else{
-            return false;
-        }
+        return this.x == b.x && this.y == b.y;
     }
 }

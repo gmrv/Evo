@@ -4,22 +4,23 @@ import ru.evo.core.infrastructure.CoordProxy;
 import ru.evo.core.objects.BaseObject;
 import ru.evo.core.objects.LiveObject;
 
-/**
- * Created with IntelliJ IDEA.
- * User: GUMEROV_SHF
- * Date: 05.08.13
- * Time: 22:27
- * To change this template use File | Settings | File Templates.
- */
+//Класс для вычислений координат передвижения. Включается композицией в объкты способные двигаться.
 public class Mover {
 
     //todo: Реализовать его как посредника, который будет оперировать с данными host.
     //Убрать все данные из этого класса. Тут только логика.
 
+    //Объект обладающий возможностью двигаться
     private LiveObject host;
+
+    //Объект цель
     private BaseObject goal;
+
+    //Коодринаты цели
     private int coordGoalX;
     private int coordGoalY;
+
+    //Коодринаты цели в более удобной форме
     private CoordProxy coordGoal;
 
     public Mover(LiveObject aHost){
@@ -65,6 +66,7 @@ public class Mover {
         setCoordGoal(goal.getCoord());
     }
 
+    //Вычисляем следующий шаг по направлению к цели
     public void setNextSteepCoordTowardsGoal() {
         CoordProxy result = new CoordProxy();
         int i, L, xstart, ystart, xend, yend;
@@ -87,6 +89,7 @@ public class Mover {
         host.setCoordNextY(Math.round(host.getCoordY() + dY));
     }
 
+    //Передвигаем объект хозяин
     public void move(){
         host.setCoordX(host.getCoordNextX());
         host.setCoordY(host.getCoordNextY());

@@ -3,20 +3,20 @@ package ru.evo.core.infrastructure;
 import ru.evo.common.Voc;
 import ru.evo.core.objects.BaseObject;
 import ru.evo.core.objects.Grass;
-import ru.evo.core.objects.Herbivore;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * Основной класс контейнер.
  * Обеспечивает хранение и доступ ко всем объектом из основного таймера.
- * todo: Нужно переделать в синглтон
+ * todo: Синглтон
  */
 public class MainContainer implements Iterable<BaseObject> {
 
+    //Активные объекты
     private ArrayList<BaseObject> mainContainer = new ArrayList<BaseObject>();
+
+    //Мертвые объекты на удаление
     private ArrayList<BaseObject> toDelete = new ArrayList<BaseObject>();
 
     public MainContainer() {
@@ -52,7 +52,6 @@ public class MainContainer implements Iterable<BaseObject> {
 
     public void dropDieObject() {
 
-
         int grassCounter = 0;
         int herbivoreCounter = 0;
 
@@ -74,19 +73,6 @@ public class MainContainer implements Iterable<BaseObject> {
             this.add(new Grass(100, 100, 1));
             this.add(new Grass(140, 140, 1));
         }
-
-
-
-//        for(int i=0; i < dieGrassCounter; i++){
-//            this.add(
-//                    new Grass(
-//                            Voc.getRand().nextInt(800),
-//                            Voc.getRand().nextInt(800),
-//                            1
-//                    )
-//            );
-//        }
-
         toDelete.clear();
     }
 
