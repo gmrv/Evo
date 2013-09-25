@@ -1,8 +1,6 @@
 package ru.evo.core.objects;
 
 import ru.evo.common.Voc;
-import ru.evo.core.exceptions.InvalidGoalTypeException;
-import ru.evo.core.infrastructure.CoordProxy;
 
 /**
  * Created with IntelliJ IDEA.

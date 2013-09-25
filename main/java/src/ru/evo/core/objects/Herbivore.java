@@ -1,6 +1,7 @@
 package ru.evo.core.objects;
 
 import ru.evo.common.Voc;
+import ru.evo.core.behavior.DirectMoveTactic;
 import ru.evo.core.behavior.Finder;
 import ru.evo.core.behavior.Mover;
 
@@ -34,6 +35,8 @@ public class Herbivore extends LiveObject {
         setSatiety(aSatiety);
         finder = new Finder(this);
         mover = new Mover(this);
+        mover.setMoveTactic(new DirectMoveTactic());
+//        mover.setMoveTactic(new StairsMoveTactic());
     }
 
     @Override

@@ -33,9 +33,9 @@ public abstract class BaseObject {
         setId(Voc.getNewId());
     }
 
-    protected BaseObject(int aX, int aY) {
-        setCoordX(aX);
-        setCoordY(aY);
+    protected BaseObject(int currentX, int currentY) {
+        setCoordX(currentX);
+        setCoordY(currentY);
         coord = new CoordProxy();
     }
 

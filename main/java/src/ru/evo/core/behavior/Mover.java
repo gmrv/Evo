@@ -23,6 +23,8 @@ public class Mover {
     //Коодринаты цели в более удобной форме
     private CoordProxy coordGoal;
 
+    private MoveTactic moveTactic;
+
     public Mover(LiveObject aHost){
         host = aHost;
     }
@@ -66,9 +68,17 @@ public class Mover {
         setCoordGoal(goal.getCoord());
     }
 
+    public MoveTactic getMoveTactic() {
+        return moveTactic;
+    }
+
+    public void setMoveTactic(MoveTactic moveTactic) {
+        this.moveTactic = moveTactic;
+    }
+
     //Вычисляем следующий шаг по направлению к цели
     public void setNextSteepCoordTowardsGoal() {
-        CoordProxy result = new CoordProxy();
+      /*  CoordProxy result = new CoordProxy();
         int i, L, xstart, ystart, xend, yend;
         float dX, dY;
         xstart = host.getCoordX();
@@ -86,7 +96,10 @@ public class Mover {
             dY = (getCoordGoalY() - host.getCoordY()) / L;
         }
         host.setCoordNextX(Math.round(host.getCoordX() + dX));
-        host.setCoordNextY(Math.round(host.getCoordY() + dY));
+        host.setCoordNextY(Math.round(host.getCoordY() + dY));*/
+        CoordProxy result = moveTactic.getNextStep(host.getCoordX(),host.getCoordY(),getCoordGoalX(),getCoordGoalY()) ;
+        host.setCoordNextX(result.x);
+        host.setCoordNextY(result.y);
     }
 
     //Передвигаем объект хозяин
@@ -94,4 +107,6 @@ public class Mover {
         host.setCoordX(host.getCoordNextX());
         host.setCoordY(host.getCoordNextY());
     }
+
+
 }
