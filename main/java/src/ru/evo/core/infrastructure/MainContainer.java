@@ -44,12 +44,14 @@ public class MainContainer implements Iterable<BaseObject> {
         }
     }
 
+    // Вызываем метод прорисовки себя у всех объектов
     public void sendPaint(){
         for(BaseObject bo : getMainContainer()){
             bo.paint();
         }
     }
 
+    // Удаление мертвых объектов
     public void dropDieObject() {
 
         int grassCounter = 0;
